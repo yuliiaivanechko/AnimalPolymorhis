@@ -14,7 +14,7 @@ public:
     std::cout << "dog with fur " << fur_style << " breathes\n";
   }
 
-  virtual void run() const override {
+  virtual void run(int a = 1) const override {
     std::cout << "Dog with fur " << fur_style << " runs\n";
   }
 };

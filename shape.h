@@ -4,16 +4,19 @@
 
 class shape {
 public:
-  shape() = default;
-  shape(const std::string &d) : description{d} {}
-
-  virtual void draw() const {
-    std::cout << "shape draw called, drawing with description\t" << description
-              << "\n";
+  shape() { std::cout << "Base constructor called\n"; };
+  shape(const std::string &d) : description{d} {
+    std::cout << "Base constructor called\n";
+    ++m_count;
   }
 
-  void draw(double a) const { std::cout << a << std::endl; }
+  virtual void draw() const = 0;
+
+  static int m_count;
+  virtual const int get_count() const { return m_count; }
 
 protected:
   std::string description{""};
 };
+
+int shape::m_count = 0;

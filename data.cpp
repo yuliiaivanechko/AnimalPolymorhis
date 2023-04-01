@@ -1,29 +1,41 @@
 #include "cat.h"
+#include "circle.h"
 #include "crow.h"
 #include "dog.h"
 #include "pigeon.h"
 #include <iostream>
 
+class Base {
+
+public:
+  Base() { std::cout << "Base contr\n"; };
+  Base(int g) : b{g} {}
+  virtual void setb() {
+    b = 20;
+    std::cout << "Base " << b << std::endl;
+  }
+
+private:
+  int b{};
+};
+
+class Derived : public Base {
+public:
+  Derived(int e, int f) : b{e}, c{f} {}
+  Derived() { std::cout << "Derived contr\n"; };
+
+  virtual void setb() override {
+    b = 40;
+    std::cout << "Derived: " << b << std::endl;
+  }
+
+private:
+  int b{};
+  int c{};
+};
+
 int main() {
-  dog dog1{"dark grey", "dog1"};
-  cat cat1{"black", "cat1"};
-  pigeon pigeon1{"white", "pigeon1"};
-  crow crow1{"black", "crow1"};
-
-  animal *an[]{&dog1, &cat1, &pigeon1, &crow1};
-  for (animal *element : an) {
-    element->breathe();
-  }
-
-  feline *fel[]{&cat1, &dog1};
-  for (feline *element : fel) {
-    element->run();
-  }
-
-  bird *b[]{&pigeon1, &crow1};
-  for (bird *element : b) {
-    element->fly();
-  }
+  shape *s = new circle(4.5, "best_circle");
 
   return 0;
 }
